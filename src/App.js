@@ -14,23 +14,28 @@ class App extends Component {
           {id: 1, name:'chanter sous la pluie', checked: false},
           {id: 2, name:`s'inscrire au marathon`, checked: false},
           {id: 3, name:`faire une blague carambar`, checked: false},
-        ], 
-        newTodo: '',
+        ],
       }   
     }
 
   // ici se place la logique.
-    handleSubmit = (event) => {
-      event.preventDefault();
-      this.setState((state) => { 
-        console.log(state.todoList)
-        state.todoList.push({id: state.todoList.length+1, name: state.newTodo, checked:false})
+    handleSubmit = (value) => {
+      let newTodoList = [...this.state.todoList];
+      const newTodo = {id: newTodoList.length+1, name: value, checked:false};
+      newTodoList.push(newTodo);
+      console.log("todolist", this.state.todoList)
+      this.setState({ 
+        todoList : newTodoList 
       })
     }
-  
-    handleChange = (event) => {
-      this.setState({
-        newTodo: event.currentTarget.value,
+
+
+    removeTodo = (todoToRemove) => {
+      let newTodoList = [...this.state.todoList];
+      const index = newTodoList.findIndex(item => item.id === todoToRemove.id)
+      newTodoList.splice(index,1);
+      this.setState({ 
+        todoList : newTodoList 
       })
     }
 
@@ -40,8 +45,8 @@ class App extends Component {
       <div>
        
         <h1> TODO_LIST_WORLD</h1>
-         <Form  handleSubmit={this.handleSubmit} handleChange={this.handleChange}/>
-          <TodoList todoList={this.state.todoList} />
+         <Form  handleSubmit={this.handleSubmit}/>
+          <TodoList todoList={this.state.todoList} removeTodo={this.removeTodo} />
       </div>
 
     )

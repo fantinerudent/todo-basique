@@ -1,22 +1,47 @@
-import React from 'react';
+import React, { Component } from "react";
 
-    
-const Form = ({handleSubmit, handleChange}) => {
-  // let newTodo;
+class Form extends Component {
+  state = {
+    inputValue: ``
+  };
 
-  // const handleChange = (event) => {
-  //   let newTodo = event.currentTarget.value;
-  //   console.log(newTodo)
-  // }
-  
-   return(
-     <form onSubmit={handleSubmit}>
-     <label> nouvelle todo :   
-     <input type='text' placeholder='nouvelle task' onChange={handleChange}/>
-     </label>
-      <button> Ajouter </button>
-   </form>
-   )
- };
+  // a l'écoute du changement de state du composant
+  // et met à jour le state.
+  handleChange = (event) => {
+    this.setState({
+      inputValue: event.currentTarget.value
+    })
+  };
 
-export default Form
+  // gere la soumission du form dans l'enfant puis
+  // appelle la fonction handlesubmit du parent en lui transmettant
+  // des infos sur le state de l'enfant.
+  handleSubmitEnfant = (event) => {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.inputValue);
+    this.setState({
+      inputValue: '',
+    })
+  }
+
+  render() {
+    return (
+      <form onSubmit={(event) => this.handleSubmitEnfant(event)}>
+        <label>
+          nouvelle todo :
+          <input
+            type="text"
+            placeholder="nouvelle task"
+            value={this.state.inputValue}
+            onChange={(event) => this.handleChange(event)}
+          />
+        </label>
+        <button> Ajouter </button>
+      </form>
+    );
+  }
+}
+
+export default Form;
+
+
