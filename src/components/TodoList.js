@@ -1,7 +1,6 @@
 import React from "react";
 
-const TodoList = ({todoListFiltered, todoList, removeTodo, todoChecked}) => {
-
+const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked }) => {
   const handleClick = event => {
     const todoToRemove = todoList.find(
       item => item.id === Number(event.currentTarget.id)
@@ -9,19 +8,21 @@ const TodoList = ({todoListFiltered, todoList, removeTodo, todoChecked}) => {
     removeTodo(todoToRemove);
   };
 
-  
-  const handleChange = (event) => {
+  const handleChange = event => {
     let theTodoChecked = Number(event.currentTarget.id);
     todoChecked(theTodoChecked);
-
-
-  }
+  };
 
   return (
     <ul>
       {todoListFiltered.map(todo => (
-        <li key={todo.id} >
-          <input id={todo.id} type='checkbox' onChange={handleChange}/>
+        <li key={todo.id+todo.name}>
+          <input
+            id={todo.id}
+            type="checkbox"
+            checked={todo.checked}
+            onChange={handleChange}
+          />
           {todo.name}
           <span
             id={todo.id}
