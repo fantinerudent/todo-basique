@@ -30,6 +30,7 @@ class Form extends Component {
         <label>
           nouvelle todo :
           <input
+            required
             type="text"
             placeholder="nouvelle task"
             value={this.state.inputValue}
