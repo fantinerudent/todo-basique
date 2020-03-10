@@ -1,4 +1,17 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
+
+const Input = styled.input`
+
+`
+
+const Container = styled.div`
+  
+`
+
+const Formulaire = styled.form`
+  display: flex;
+`
 
 class Form extends Component {
   state = {
@@ -26,10 +39,11 @@ class Form extends Component {
 
   render() {
     return (
-      <form onSubmit={(event) => this.handleSubmitEnfant(event)}>
+      <Container>
+      <Formulaire onSubmit={(event) => this.handleSubmitEnfant(event)}>
         <label>
           nouvelle todo :
-          <input
+          <Input
             required
             type="text"
             placeholder="nouvelle task"
@@ -38,7 +52,8 @@ class Form extends Component {
           />
         </label>
         <button> Ajouter </button>
-      </form>
+      </Formulaire>
+      </Container>
     );
   }
 }

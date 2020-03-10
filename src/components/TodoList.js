@@ -1,4 +1,17 @@
+/* eslint-disable jsx-a11y/accessible-emoji */
 import React from "react";
+import styled from 'styled-components';
+
+const Todo = styled.div`
+  color: green;
+  `
+
+const Hammer = styled.span`
+  font-size: 30px;
+`
+
+
+
 
 const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked, styledWhenChecked }) => {
 
@@ -17,7 +30,7 @@ const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked, styledW
   return (
     <ul>
       {todoListFiltered.map(todo => (
-        <div key={todo.id + todo.name} style={todo.checked ? { textDecoration: 'line-through' } : { textDecoration: 'inherit' }}>
+        <Todo key={todo.id + todo.name} style={todo.checked ? { textDecoration: 'line-through' } : { textDecoration: 'inherit' }}>
           <input
             id={todo.id}
             type="checkbox"
@@ -25,7 +38,7 @@ const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked, styledW
             onChange={handleChange}
           />
           {todo.name}
-          <span
+          <Hammer
             id={todo.id}
             onClick={handleClick}
             style={{ marginLeft: "10px" }}
@@ -33,8 +46,8 @@ const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked, styledW
             aria-label="hammer"
           >
             🔨
-          </span>
-        </div>
+          </Hammer>
+        </Todo>
       ))}
     </ul>
   );

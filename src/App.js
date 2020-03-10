@@ -3,6 +3,36 @@ import "./App.css";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
 import Filter from "./components/Filter";
+import styled from 'styled-components';
+
+/************************ STYLE **************************/
+const DivMedia = styled.div`
+  display: flex;
+
+  /* mobile first */
+  @media screen and (min-width: 200px) and (max-width: 640px)  {
+    
+    flex-direction: column;
+    font-size: 80%;
+    h1 {
+      font-family: 'Baloo Chettan 2', cursive;
+      text-align:center;
+      font-size: 200%;
+    }
+  }
+
+  /* screen */
+  @media screen and (min-width: 640px) {    
+    h1 {
+      font-family: 'Baloo Chettan 2', cursive;
+      text-align:center;
+      padding-top:20px;
+    }
+    flex-direction: column;
+  };
+  `;
+  /************************** END OF STYLE *******************/
+
 
 class App extends Component {
   // le constructor est initialisé une fois puis, n'st plus touché.
@@ -91,7 +121,7 @@ class App extends Component {
       : { color: 'red' }
 
     return (
-      <div>
+      <DivMedia>
         <h1> TODO_LIST_WORLD</h1>
         <Form handleSubmit={this.handleSubmit} />
         <TodoList
@@ -102,7 +132,7 @@ class App extends Component {
           styledWhenChecked={styleToSend}
         />
         <Filter todoListFiltered={this.todoListFiltered} />
-      </div>
+      </DivMedia>
     );
   }
 }
