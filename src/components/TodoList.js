@@ -1,6 +1,7 @@
 import React from "react";
 
-const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked }) => {
+const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked, styledWhenChecked }) => {
+
   const handleClick = event => {
     const todoToRemove = todoList.find(
       item => item.id === Number(event.currentTarget.id)
@@ -16,7 +17,7 @@ const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked }) => {
   return (
     <ul>
       {todoListFiltered.map(todo => (
-        <li key={todo.id+todo.name}>
+        <div key={todo.id + todo.name} style={todo.checked ? { textDecoration: 'line-through' } : { textDecoration: 'inherit' }}>
           <input
             id={todo.id}
             type="checkbox"
@@ -33,7 +34,7 @@ const TodoList = ({ todoListFiltered, todoList, removeTodo, todoChecked }) => {
           >
             🔨
           </span>
-        </li>
+        </div>
       ))}
     </ul>
   );

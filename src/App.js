@@ -15,7 +15,7 @@ class App extends Component {
         { id: 3, name: `faire une blague carambar`, checked: false }
       ],
       isFilterActive: false,
-      todoFiltered: []
+      todoFiltered: [],
     };
   }
 
@@ -70,7 +70,6 @@ class App extends Component {
         this.setState({
           todoFiltered: checkedfalse
         });
-
         break;
       default:
         this.setState({
@@ -80,10 +79,16 @@ class App extends Component {
     }
   };
 
+
+
   render() {
     const todoListToDisplay = this.state.isFilterActive
       ? this.state.todoFiltered
       : this.state.todoList;
+
+    const styleToSend = this.state.isTodoChecked
+      ? { color: 'blue' }
+      : { color: 'red' }
 
     return (
       <div>
@@ -94,6 +99,7 @@ class App extends Component {
           todoList={this.state.todoList}
           todoListFiltered={todoListToDisplay}
           removeTodo={this.removeTodo}
+          styledWhenChecked={styleToSend}
         />
         <Filter todoListFiltered={this.todoListFiltered} />
       </div>
