@@ -7,17 +7,26 @@ import styled from 'styled-components';
 
 /************************ STYLE **************************/
 const DivMedia = styled.div`
+  height: 100vh;
+  width:100vw;
   display: flex;
+  background: #7F7FD5;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #91EAE4, #86A8E7, #7F7FD5);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #91EAE4, #86A8E7, #7F7FD5); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
   /* mobile first */
   @media screen and (min-width: 200px) and (max-width: 640px)  {
-    
     flex-direction: column;
-    font-size: 80%;
+    font-size: 120%;
     h1 {
       font-family: 'Baloo Chettan 2', cursive;
       text-align:center;
       font-size: 200%;
+      color: #91EAE4;
+    }
+    input[type=text] {
+      width:60%;
     }
   }
 
@@ -27,8 +36,13 @@ const DivMedia = styled.div`
       font-family: 'Baloo Chettan 2', cursive;
       text-align:center;
       padding-top:20px;
+      color:#91EAE4;
     }
     flex-direction: column;
+    input[type=text] {
+      width:25%;
+      margin-right:40px;
+    }
   };
   `;
   /************************** END OF STYLE *******************/

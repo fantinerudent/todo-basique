@@ -1,16 +1,33 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
+import { Button , Input} from 'reactstrap';
 
-const Input = styled.input`
-
-`
-
-const Container = styled.div`
-  
-`
 
 const Formulaire = styled.form`
+@media screen and (min-width: 200px) and (max-width: 640px)  {
   display: flex;
+  justify-content: space-evenly;
+  margin: 20px;
+}
+ 
+@media screen and (min-width: 640px) {  
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}`
+
+const ButtonStyled = styled(Button)`
+  background: linear-gradient(#e66465, #9198e5);
+  border-radius: 10px;
+`
+
+const InputStyled= styled(Input)`
+  :focus {
+    color:red;
+  }
+   background-color: white;
+   opacity: 60%;
+   border-radius: 10px;
 `
 
 class Form extends Component {
@@ -39,21 +56,19 @@ class Form extends Component {
 
   render() {
     return (
-      <Container>
-      <Formulaire onSubmit={(event) => this.handleSubmitEnfant(event)}>
-        <label>
-          nouvelle todo :
-          <Input
+      <div>
+        <Formulaire onSubmit={(event) => this.handleSubmitEnfant(event)}>
+          <InputStyled
+             maxLength={26}
             required
             type="text"
             placeholder="nouvelle task"
             value={this.state.inputValue}
             onChange={(event) => this.handleChange(event)}
           />
-        </label>
-        <button> Ajouter </button>
-      </Formulaire>
-      </Container>
+          <ButtonStyled> Ajouter </ButtonStyled>
+        </Formulaire>
+      </div>
     );
   }
 }
